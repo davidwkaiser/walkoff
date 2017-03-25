@@ -27,7 +27,7 @@ class Game < ApplicationRecord
         if self.potential_walkoff?(game)
           "POTENTIAL WALKOFF"
         else
-          "IN PROGRESS"
+          "BORING"
         end
       else
         "POSTGAME"
