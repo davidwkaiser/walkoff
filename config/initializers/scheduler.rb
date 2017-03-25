@@ -17,7 +17,7 @@ active_checker.every '1h' do
   end
 end
 
-logger.every '10s' do
+test_logger.every '10s' do
   puts "=============="
   puts "THE TIME IS #{Time.now}"
   puts "=============="
