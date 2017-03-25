@@ -9,6 +9,10 @@ class Game < ApplicationRecord
     "http://m.mlb.com/gameday/#{self.gid}/#game=#{self.gid}"
   end
 
+  def get_state
+    Game.get_state(MLBGameday::API.new.game(self.gid))
+  end
+
   def self.potential_walkoff?(game)
     inning = game.inning
     score_diff = game.score.last - game.score.first
