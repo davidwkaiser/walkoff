@@ -20,6 +20,7 @@ active_checker.every '1h' do
   end
 end
 
+
 tweet_manager.every '30s' do
   if active_games
     games.each do |game|
