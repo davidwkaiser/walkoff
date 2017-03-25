@@ -11,10 +11,10 @@ class Game < ApplicationRecord
 
   def self.potential_walkoff?(game)
     inning = game.inning
-    score_diff = game.score.first - game.score.last
+    score_diff = game.score.last - game.score.first
     num_runners = game.runners.compact.count
 
-    inning.first >=9 && inning.last == "bottom" && score_diff < num_runners + 1
+    inning.first >=9 && inning.last == "Bottom" && score_diff < num_runners + 1
   end
 
   def self.get_state(game)
