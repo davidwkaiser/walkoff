@@ -2,7 +2,6 @@ require 'rufus-scheduler'
 game_populator = Rufus::Scheduler.singleton
 active_checker = Rufus::Scheduler.singleton
 tweet_manager  = Rufus::Scheduler.singleton
-test_logger    = Rufus::Scheduler.singleton
 
 
 games = Game.where.not(state: "POSTGAME")
@@ -21,31 +20,19 @@ active_checker.every '1h' do
   end
 end
 
-tweet_manager.every '9s' do
+tweet_manager.every '30s' do
   if active_games
     games.each do |game|
       api_state = game.get_state
       if api_state != game.state
         if api_state == "POTENTIAL WALKOFF"
-          puts "================="
-          puts "POTENTIAL WALKOFF TWEET"
-          puts "================="
+          Game.send_tweet(game.gid, false)
         elsif api_state == "POSTGAME" && game.state == "POTENTIAL WALKOFF"
-          puts "================="
-          puts "ACTUAL WALKOFF TWEET"
-          puts "================="
+          Game.send_tweet(game.gid, true)
         end
 
         game.update(state: api_state)
       end
     end
   end
-end
-
-test_logger.every '3s' do
-  puts
-  puts "================"
-  puts games.map(&:state)
-  puts "================"
-  puts
 end
