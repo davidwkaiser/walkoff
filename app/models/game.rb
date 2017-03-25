@@ -22,7 +22,7 @@ class Game < ApplicationRecord
       end
     else
       #POTENTIAL WALKOFF
-      tweet = "Potential Walkoff! The #{game.home_team.name} could walkoff the #{game.away_team.name} any minute! It's #{game.score.first} - #{game.score.last}, #{bottom game.inning.first}  #{Game.gameday_url(gid)}"
+      tweet = "Potential Walkoff! The #{game.home_team.name} could walkoff the #{game.away_team.name} any minute! It's #{game.score.first} - #{game.score.last}, bottom #{game.inning.first}  #{Game.gameday_url(gid)}"
       $twitter.update(tweet)
     end
   end
