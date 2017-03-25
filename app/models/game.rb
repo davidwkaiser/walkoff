@@ -2,8 +2,10 @@ require 'mlb_gameday'
 
 class Game < ApplicationRecord
   def potential_walkoff?
-    api = MLBGameday::API.new
-    game = api.game(self.gid)
+    Game.potential_walkoff?(MLBGameday::API.new.game(self.gid))
+  end
+
+  def self.potential_walkoff?(game)
     inning = game.inning
     score_diff = game.score.first - game.score.last
     num_runners = game.runners.compact.count
@@ -14,7 +16,11 @@ class Game < ApplicationRecord
   def self.get_state(game)
     if game.started?
       if game.in_progress?
-        "IN PROGRESS"
+        if self.potential_walkoff?(game)
+          "POTENTIAL WALKOFF"
+        else
+          "IN PROGRESS"
+        end
       else
         "POSTGAME"
       end
