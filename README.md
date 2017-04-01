@@ -21,7 +21,9 @@ DEPLOYMENT NOTE: When we deployed to Heroku, we kept getting errors related to t
 
 Also, since the cron runs at 5 am, when we deployed it at 3 pm, we needed to populate the games manually via Heroku's Rails Console:
 
-  Game.populate
-  games = Game.where.not(state: "POSTGAME")
+  Game.populate  
+  games = Game.where.not(state: "POSTGAME")  
+  
+Twitter login credentials need to be manually entered into Heroku via the Rails console.   
 
 What remains to be determined is the extent to which Heroku remains active so that the crons work. We suspect Heroku spins down if we're not hitting the server to look at the index.html page. The question is, is that true and if so, how quickly does it spin down? 
