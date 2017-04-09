@@ -26,6 +26,4 @@ Also, since the cron runs at 5 am, when we deployed it at 3 pm, we needed to pop
   
 Twitter login credentials need to be manually entered into Heroku via the Rails console.   
 
-What remains to be determined is the extent to which Heroku remains active so that the crons work. We suspect Heroku spins down if we're not hitting the server to look at the index.html page. The question is, is that true and if so, how quickly does it spin down? 
-
-Some research confirmed that it will spin down after 30 minutes of inactivity. Currently looking into either an inexpensive hobby plan on Heroku or a free plan elsewhere, perhaps AWS. 
+Research confirmed that on Heroku's free hosting plan this app will spin down after a period of inactivity. We have since upgraded the hosting for this project so that it will run constantly. It appears that all of the processes are working, but there are one or two that need to be confirmed in the next few days. 
