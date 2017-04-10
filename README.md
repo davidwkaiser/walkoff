@@ -26,4 +26,4 @@ Also, since the cron runs at 5 am, when we deployed it at 3 pm, we needed to pop
   
 Twitter login credentials need to be manually entered into Heroku via the Rails console.   
 
-Research confirmed that on Heroku's free hosting plan this app will spin down after a period of inactivity. We have since upgraded the hosting for this project so that it will run constantly. It appears that all of the processes are working, but there are one or two that need to be confirmed in the next few days. 
+Research confirmed that on Heroku's free hosting plan this app will spin down after a period of inactivity. We have since upgraded the hosting for this project so that it will run constantly. It appears that all of the processes are working, including the cron to populate the games daily. 
